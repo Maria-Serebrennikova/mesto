@@ -8,3 +8,4 @@
 5. Адаптивная верстка.  
 6. JS - интерактив: открытие-закрытие попапа, редактирование формы.
 *Ссылка на GitHub Pages:*  
+https://maria-serebrennikova.github.io/mesto/

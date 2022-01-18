@@ -1,0 +1,27 @@
+.profile__rename{
+    background: none;
+    background-image: url("../../../images/Edit\ Button.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+    width: 24px;
+    height: 24px;
+    align-self: center;
+    margin-left: 18px;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: opacity .5s;
+    }
+
+.profile__rename:hover{
+    opacity: 0.6;
+}
+@media screen and (max-width: 767px) {
+    .profile__rename{
+        width: 18px;
+        height: 18px;
+        margin-top: 5px;
+        }
+        } 

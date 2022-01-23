@@ -15,14 +15,12 @@
         <section class="profile">
           <img class="profile__avatar" src="./images/image.jpg" alt="Аватар" />
           <div class="profile__info">
-            <div class="profile__author">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button
                 class="profile__rename"
                 aria-label="change"
                 type="button"
               ></button>
-            </div>
             <p class="profile__status">Исследователь океана</p>
           </div>
           <button class="profile__button"></button>
@@ -32,28 +30,28 @@
             <img class="card__image" src="./images/Arkhyz.jpg" alt="Архыз" />
             <div class="card__bottom">
               <h3 class="card__name">Архыз</h3>
-              <button class="card__like"></button>
+              <button class="card__like" type="button"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/Cheget.jpg" alt="Чегет" />
             <div class="card__bottom">
               <h3 class="card__name">Чегет</h3>
-              <button class="card__like"></button>
+              <button class="card__like" type="button"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/Dombay.jpg" alt="Домбай" />
             <div class="card__bottom">
               <h3 class="card__name">Домбай</h3>
-              <button class="card__like"></button>
+              <button class="card__like" type="button"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/Elbrus.jpg" alt="Эльбрус" />
             <div class="card__bottom">
               <h3 class="card__name">Эльбрус</h3>
-              <button class="card__like"></button>
+              <button class="card__like" type="button"></button>
             </div>
           </div>
           <div class="card">
@@ -64,7 +62,7 @@
             />
             <div class="card__bottom">
               <h3 class="card__name">Красная Поляна</h3>
-              <button class="card__like"></button>
+              <button class="card__like" type="button"></button>
             </div>
           </div>
           <div class="card">
@@ -75,7 +73,7 @@
             />
             <div class="card__bottom">
               <h3 class="card__name">Шерегеш</h3>
-              <button class="card__like"></button>
+              <button class="card__like" type="button"></button>
             </div>
           </div>
         </section>
@@ -87,9 +85,9 @@
     <section class="popup">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
-        <form class="popup__form">
-          <input type="text" class="popup__name" />
-          <input type="text" class="popup__status" />
+        <form class="popup__form" name="profile-form">
+          <input type="text" class="popup__info popup__info_type_name" />
+          <input type="text" class="popup__info popup__info_type_status" />
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
         <button type="button" aria-label="close" class="popup__close"></button>

@@ -1,4 +1,4 @@
-.popup__name{
+.popup__info{
 display: flex;
 margin: 0 auto 30px;
 font-family: Inter;
@@ -12,8 +12,15 @@ border: none;
 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 outline: none;
 }
+.popup__info:last-child{
+    margin: 0 auto 48px;
+}
+
 @media screen and (max-width: 767px) {
-    .popup__name{
+    .popup__info{
         width: 238px;
         }
-        } 
+    .popup__info:last-child{
+        margin: 0 auto 45px;
+        }   
+    }      

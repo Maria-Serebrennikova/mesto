@@ -26,63 +26,13 @@
           <button class="profile__button" type="button"></button>
         </section>
         <section class="cards">
-          <div class="card">
-            <img class="card__image" src="./images/Arkhyz.jpg" alt="Архыз" />
-            <div class="card__bottom">
-              <h3 class="card__name">Архыз</h3>
-              <button class="card__like" type="button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__image" src="./images/Cheget.jpg" alt="Чегет" />
-            <div class="card__bottom">
-              <h3 class="card__name">Чегет</h3>
-              <button class="card__like" type="button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__image" src="./images/Dombay.jpg" alt="Домбай" />
-            <div class="card__bottom">
-              <h3 class="card__name">Домбай</h3>
-              <button class="card__like" type="button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card__image" src="./images/Elbrus.jpg" alt="Эльбрус" />
-            <div class="card__bottom">
-              <h3 class="card__name">Эльбрус</h3>
-              <button class="card__like" type="button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              class="card__image"
-              src="./images/Krasnaya_Polyana.jpg"
-              alt="Красная Поляна"
-            />
-            <div class="card__bottom">
-              <h3 class="card__name">Красная Поляна</h3>
-              <button class="card__like" type="button"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              class="card__image"
-              src="./images/Sheregesh.jpg"
-              alt="Шерегеш"
-            />
-            <div class="card__bottom">
-              <h3 class="card__name">Шерегеш</h3>
-              <button class="card__like" type="button"></button>
-            </div>
-          </div>
-        </section>
+         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <section class="popup">
+    <section class="popup popup-rename-user">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
         <form class="popup__form" name="profile-form">
@@ -90,9 +40,40 @@
           <input type="text" class="popup__info popup__info_type_status" />
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
-        <button type="button" aria-label="close" class="popup__close"></button>
+        <button type="button" aria-label="close" class="popup__close rename-user-close"></button>
       </div>
     </section>
+    
+    <section class="popup popup-append-card">
+      <div class="popup__container">
+        <h3 class="popup__header">Новое место</h3>
+        <form class="popup__form" name="card-form">
+          <input type="text" class="popup__info popup__info_type_place" placeholder="Название"/>
+          <input type="text" class="popup__info popup__info_type_link" placeholder="Ссылка"/>
+          <button type="submit" class="popup__button">Создать</button>
+        </form>
+        <button type="button" aria-label="close" class="popup__close append-card-close"></button>
+      </div>
+    </section>
+
+    <section class="popup popup-bigscreen">
+      <div class="popup-bigscreen__container">
+        <img class="popup-bigscreen__image" src="/" alt="Изображение" />
+        <p class="popup-bigscreen__name"></p>
+        <button type="button" class="popup__close bigscreen-close"></button>
+        </div>
+    </section>
+
+    <template id="card-template">
+      <div class="card">
+        <a href="#"class = "card__image"><img src="/" class="card__img" alt="Место"/></a>
+        <img src="images\Trash.svg" class="card__trash"></img>
+        <div class="card__bottom">
+          <h3 class="card__name"></h3>
+          <button class="card__like" type="button"></button>
+         </div>
+        </div>
+          </template>
     <script src="./scripts/script.js"></script>
   </body>
 </html>

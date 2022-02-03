@@ -85,7 +85,7 @@ openPopupAppendCardButton.addEventListener("click", () =>  openPopup("popup-appe
 
 closePopupRenameUserButton.addEventListener("click", () =>  closePopup("popup-rename-user"));
 closePopupAppendCardButton.addEventListener("click", () =>  closePopup("popup-append-card"));
-
+closePopupBigScreen.addEventListener("click", () =>  closePopup("popup-bigscreen"));
 
 function formSubmitHandler(e) {
     e.preventDefault();
@@ -155,11 +155,10 @@ const buttonTrash = card.querySelector(".card__trash");
   buttonTrash.addEventListener('click', () => {
     buttonTrash.parentElement.remove();
 });
-const openPopupBigScreen = card.querySelector(".card__image");
+const openPopupBigScreen = card.querySelector(".card__img");
   openPopupBigScreen.addEventListener('click', (e) => {
-    const cardImg = e.target.querySelector(".card__img");
-    imageBigscreen.src = cardImg.src;
-    nameBigscreen.textContent = nameCard.textContent;
+    imageBigscreen.src = e.target.src;
+    nameBigscreen.textContent = e.target.textContent;
     openPopup("popup-bigscreen");
 });
 }

@@ -29,7 +29,6 @@ const template = document.querySelector('#card-template').content;
 const card = document.querySelector('.card');
 const cards = document.querySelector('.cards');
 
-
 const openPopupRenameUserButton = document.querySelector(".profile__rename");
 const popupContainer =  document.querySelector(".popup");
 const closePopupRenameUserButton = document.querySelector(".rename-user-close");
@@ -50,8 +49,8 @@ const profileStatus = document.querySelector(".profile__status");
 
 const imageBigscreen = document.querySelector('.popup-bigscreen__image');
 const nameBigscreen = document.querySelector('.popup-bigscreen__name');
-const imageCard = document.querySelector('.card__img');
-const nameCard = document.querySelector('.card__name');
+const imageCard = document.querySelector('.card__image');
+
 
   function openPopup(targetClassName) {
     const targetPopup =  document.querySelector(`.popup.${targetClassName}`);
@@ -86,7 +85,6 @@ openPopupAppendCardButton.addEventListener("click", () =>  openPopup("popup-appe
 
 closePopupRenameUserButton.addEventListener("click", () =>  closePopup("popup-rename-user"));
 closePopupAppendCardButton.addEventListener("click", () =>  closePopup("popup-append-card"));
-closePopupBigScreen.addEventListener("click", () =>  closePopup("popup-bigscreen"));
 
 
 function formSubmitHandler(e) {
@@ -132,10 +130,10 @@ function renderCard(item, isNew) {
   newCard.querySelector('.card__img').src = item.link;
   newCard.querySelector('.card__name').textContent  = item.name;
      
- addListeners(newCard)
+ addListeners(newCard) 
 
  if (isNew) {
-  cards.prepend(newCard);
+  cards.append(newCard);
 
  } else {
   cards.appendChild(newCard);
@@ -158,10 +156,12 @@ const buttonTrash = card.querySelector(".card__trash");
     buttonTrash.parentElement.remove();
 });
 const openPopupBigScreen = card.querySelector(".card__image");
-  openPopupBigScreen.addEventListener('click', () => {
-    imageBigscreen.src = imageCard.src;
+  openPopupBigScreen.addEventListener('click', (e) => {
+    const cardImg = e.target.querySelector(".card__img");
+    imageBigscreen.src = cardImg.src;
     nameBigscreen.textContent = nameCard.textContent;
     openPopup("popup-bigscreen");
 });
 }
   render()
+  

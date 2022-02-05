@@ -32,35 +32,35 @@
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
-    <section class="popup popup-rename-user">
-      <div class="popup__container">
+    <section class="popup popup_type_rename-user">
+        <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
-        <form class="popup__form" name="profile-form">
+        <form class="popup__form popup__form_type_rename-user" >
           <input type="text" class="popup__info popup__info_type_name" />
           <input type="text" class="popup__info popup__info_type_status" />
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
-        <button type="button" aria-label="close" class="popup__close rename-user-close"></button>
+        <button type="button" aria-label="close" class="popup__close popup__close_type_rename-user"></button>
       </div>
     </section>
     
-    <section class="popup popup-append-card">
+    <section class="popup popup_type_append-card">
       <div class="popup__container">
         <h3 class="popup__header">Новое место</h3>
-        <form class="popup__form" name="card-form">
+        <form class="popup__form popup__form_type_append-card">
           <input type="text" class="popup__info popup__info_type_place" placeholder="Название"/>
           <input type="text" class="popup__info popup__info_type_link" placeholder="Ссылка"/>
           <button type="submit" class="popup__button">Создать</button>
         </form>
-        <button type="button" aria-label="close" class="popup__close append-card-close"></button>
+        <button type="button" aria-label="close" class="popup__close popup__close_type_append-card"></button>
       </div>
     </section>
 
-    <section class="popup popup-bigscreen">
-      <div class="popup-bigscreen__container">
-        <img class="popup-bigscreen__image" src="/" alt="Изображение" />
-        <p class="popup-bigscreen__name"></p>
-        <button type="button" class="popup__close bigscreen-close"></button>
+    <section class="popup popup_type_bigscreen">
+      <div class="popup__container popup__container_type_bigscreen">
+        <img class="popup__image" src="/" alt="Изображение" />
+        <p class="popup__name"></p>
+        <button type="button" class="popup__close popup__close_type_bigscreen"></button>
         </div>
     </section>
 
@@ -74,6 +74,7 @@
          </div>
         </div>
           </template>
+    <script src="./scripts/cards.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
 </html>

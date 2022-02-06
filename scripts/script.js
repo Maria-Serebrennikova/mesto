@@ -38,22 +38,13 @@ function openPopup(targetClassName) {
 
 function closePopup(targetClassName) {
   targetClassName.classList.remove("popup_active");
-  clearInputs(targetClassName);
-}
+ }
 
 function openRenamePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
 
   openPopup(popupRenameUser);
-}
-
-function clearInputs(targetPopup) {
-  const inputs = targetPopup.querySelectorAll("input");
-
-  inputs.forEach((input) => {
-    input.value = "";
-  });
 }
 
 openPopupRenameUserButton.addEventListener("click", openRenamePopup);
@@ -64,9 +55,13 @@ openPopupAppendCardButton.addEventListener("click", () =>
 closePopupRenameUserButton.addEventListener("click", () =>
   closePopup(popupRenameUser)
 );
-closePopupAppendCardButton.addEventListener("click", () =>
-  closePopup(popupAppendCard)
-);
+
+closePopupAppendCardButton.addEventListener("click", function(){
+closePopup(popupAppendCard)
+placeInput.value = ''
+linkInput.value = ''
+});
+
 closePopupBigScreen.addEventListener("click", () => closePopup(popupBigScreen));
 
 function formSubmitHandler(e) {
@@ -96,8 +91,8 @@ function formSubmitHandlerCard(e) {
   if (place.trim() && link.trim()) {
     addCard(place, link);
     closePopup(popupAppendCard);
+      }
   }
-}
 
 formElementCard.addEventListener("submit", formSubmitHandlerCard);
 
@@ -119,6 +114,7 @@ function getNewCard(item) {
   const newCard = template.cloneNode(true);
 
   newCard.querySelector(".card__img").src = item.link;
+  newCard.querySelector(".card__img").alt = item.name;
   newCard.querySelector(".card__name").textContent = item.name;
 
   addListeners(newCard);
@@ -139,7 +135,7 @@ function addListeners(card) {
   const openPopupBigScreen = card.querySelector(".card__img");
   openPopupBigScreen.addEventListener("click", (e) => {
     imageBigscreen.src = e.target.src;
-    nameBigscreen.textContent = e.target.textContent;
+    nameBigscreen.textContent = e.target.alt;
     openPopup(popupBigScreen);
   });
 }

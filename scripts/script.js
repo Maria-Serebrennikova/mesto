@@ -32,13 +32,36 @@ const imageBigscreen = document.querySelector(".popup__image");
 const nameBigscreen = document.querySelector(".popup__name");
 const imageCard = document.querySelector(".card__image");
 
+function addPopupListeners(targetClassName) {
+  targetClassName.addEventListener("click", closeOutPopup);
+  document.addEventListener("keydown", closePopupEscape);
+}
+
+function removePopupListeners(targetClassName) {
+  targetClassName.removeEventListener("click", closeOutPopup);
+  document.removeEventListener("keydown", closePopupEscape);
+}
+
 function openPopup(targetClassName) {
+  addPopupListeners(targetClassName);
   targetClassName.classList.add("popup_active");
 }
 
 function closePopup(targetClassName) {
+  removePopupListeners(targetClassName);
   targetClassName.classList.remove("popup_active");
 }
+
+const closeOutPopup = (e) => {
+  if (e.target === e.currentTarget) closePopup(e.target);
+};
+
+const closePopupEscape = (e) => {
+  if (e.key === "Escape") {
+    const targetClassName = document.querySelector(".popup_active");
+    closePopup(targetClassName);
+  }
+};
 
 function openRenamePopup() {
   nameInput.value = profileName.textContent;
@@ -58,34 +81,15 @@ closePopupRenameUserButton.addEventListener("click", () =>
 
 closePopupAppendCardButton.addEventListener("click", function () {
   closePopup(popupAppendCard);
-  placeInput.value = "";
-  linkInput.value = "";
 });
 
 closePopupBigScreen.addEventListener("click", () => closePopup(popupBigScreen));
 
-const closeOutPopup = (e) => {
-  if (e.target === e.currentTarget) closePopup(targetClassName);
-};
-
-const closePopupEscape = (e) => {
-  if (e.key === "Escape") {
-    closePopup(targetClassName);
-  }
-};
-
 function formSubmitHandler(e) {
   e.preventDefault();
 
-  const name = nameInput.value;
-  const job = jobInput.value;
-  if (name.trim()) {
-    profileName.textContent = name;
-  }
-
-  if (job.trim()) {
-    profileStatus.textContent = job;
-  }
+  profileName.textContent = nameInput.value;
+  profileStatus.textContent = jobInput.value;
 
   closePopup(popupRenameUser);
 }
@@ -98,10 +102,13 @@ function formSubmitHandlerCard(e) {
   const place = placeInput.value;
   const link = linkInput.value;
 
-  if (place.trim() && link.trim()) {
-    addCard(place, link);
-    closePopup(popupAppendCard);
-  }
+  addCard(place, link);
+  e.target.reset();
+
+  const buttonElement = popupAppendCard.querySelector(".popup__button");
+  buttonElement.classList.add("popup__button_disabled");
+
+  closePopup(popupAppendCard);
 }
 
 formElementCard.addEventListener("submit", formSubmitHandlerCard);
@@ -145,6 +152,7 @@ function addListeners(card) {
   const openPopupBigScreen = card.querySelector(".card__img");
   openPopupBigScreen.addEventListener("click", (e) => {
     imageBigscreen.src = e.target.src;
+    imageBigscreen.alt = e.target.alt;
     nameBigscreen.textContent = e.target.alt;
     openPopup(popupBigScreen);
   });

@@ -1,9 +1,9 @@
 const template = document.querySelector("#card-template").content;
 const card = document.querySelector(".card");
 const cards = document.querySelector(".cards");
-popupRenameUser = document.querySelector(".popup_type_rename-user");
-popupAppendCard = document.querySelector(".popup_type_append-card");
-popupBigScreen = document.querySelector(".popup_type_bigscreen");
+const popupRenameUser = document.querySelector(".popup_type_rename-user");
+const popupAppendCard = document.querySelector(".popup_type_append-card");
+const popupBigScreen = document.querySelector(".popup_type_bigscreen");
 
 const openPopupRenameUserButton = document.querySelector(".profile__rename");
 const closePopupRenameUserButton = document.querySelector(
@@ -38,7 +38,7 @@ function openPopup(targetClassName) {
 
 function closePopup(targetClassName) {
   targetClassName.classList.remove("popup_active");
- }
+}
 
 function openRenamePopup() {
   nameInput.value = profileName.textContent;
@@ -56,13 +56,23 @@ closePopupRenameUserButton.addEventListener("click", () =>
   closePopup(popupRenameUser)
 );
 
-closePopupAppendCardButton.addEventListener("click", function(){
-closePopup(popupAppendCard)
-placeInput.value = ''
-linkInput.value = ''
+closePopupAppendCardButton.addEventListener("click", function () {
+  closePopup(popupAppendCard);
+  placeInput.value = "";
+  linkInput.value = "";
 });
 
 closePopupBigScreen.addEventListener("click", () => closePopup(popupBigScreen));
+
+const closeOutPopup = (e) => {
+  if (e.target === e.currentTarget) closePopup(targetClassName);
+};
+
+const closePopupEscape = (e) => {
+  if (e.key === "Escape") {
+    closePopup(targetClassName);
+  }
+};
 
 function formSubmitHandler(e) {
   e.preventDefault();
@@ -91,8 +101,8 @@ function formSubmitHandlerCard(e) {
   if (place.trim() && link.trim()) {
     addCard(place, link);
     closePopup(popupAppendCard);
-      }
   }
+}
 
 formElementCard.addEventListener("submit", formSubmitHandlerCard);
 

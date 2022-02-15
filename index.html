@@ -16,43 +16,90 @@
           <img class="profile__avatar" src="./images/image.jpg" alt="Аватар" />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button
-                class="profile__rename"
-                aria-label="change"
-                type="button"
-              ></button>
+            <button
+              class="profile__rename"
+              aria-label="change"
+              type="button"
+            ></button>
             <p class="profile__status">Исследователь океана</p>
           </div>
           <button class="profile__button" type="button"></button>
         </section>
-        <section class="cards">
-         </section>
+        <section class="cards"></section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
     </div>
     <section class="popup popup_type_rename-user">
-        <div class="popup__container">
-        <h3 class="popup__header">Редактировать профиль</h3>
-        <form class="popup__form popup__form_type_rename-user" >
-          <input type="text" class="popup__info popup__info_type_name" />
-          <input type="text" class="popup__info popup__info_type_status" />
+      <div class="popup__container">
+        <form class="popup__form popup__form_type_rename-user" novalidate>
+          <h3 class="popup__header">Редактировать профиль</h3>
+          <label for="username" class="popup__label">
+            <input
+              type="text"
+              id="username"
+              class="popup__info popup__info_type_name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__error_visible username-error"></span>
+          </label>
+          <label for="status" class="popup__label">
+            <input
+              type="text"
+              id="status"
+              class="popup__info popup__info_type_status"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__error_visible status-error"></span>
+          </label>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
-        <button type="button" aria-label="close" class="popup__close popup__close_type_rename-user"></button>
+        <button
+          type="button"
+          aria-label="close"
+          class="popup__close popup__close_type_rename-user"
+        ></button>
       </div>
     </section>
-    
+
     <section class="popup popup_type_append-card">
       <div class="popup__container">
-        <h3 class="popup__header">Новое место</h3>
-        <form class="popup__form popup__form_type_append-card">
-          <input type="text" class="popup__info popup__info_type_place" placeholder="Название"/>
-          <input type="text" class="popup__info popup__info_type_link" placeholder="Ссылка"/>
+        <form class="popup__form popup__form_type_append-card" novalidate>
+          <h3 class="popup__header">Новое место</h3>
+          <label for="place" class="popup__label">
+            <input
+              type="text"
+              id="place"
+              class="popup__info popup__info_type_place"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__error_visible place-error"></span>
+          </label>
+          <label for="email" class="popup__label">
+            <input
+              id="email"
+              type="url"
+              class="popup__info popup__info_type_link"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="popup__error_visible email-error"></span>
+          </label>
           <button type="submit" class="popup__button">Создать</button>
         </form>
-        <button type="button" aria-label="close" class="popup__close popup__close_type_append-card"></button>
+        <button
+          type="button"
+          aria-label="close"
+          class="popup__close popup__close_type_append-card"
+        ></button>
       </div>
     </section>
 
@@ -60,21 +107,27 @@
       <div class="popup__container popup__container_type_bigscreen">
         <img class="popup__image" src="/" alt="Изображение" />
         <p class="popup__name"></p>
-        <button type="button" class="popup__close popup__close_type_bigscreen"></button>
-        </div>
+        <button
+          type="button"
+          class="popup__close popup__close_type_bigscreen"
+        ></button>
+      </div>
     </section>
 
     <template id="card-template">
       <div class="card">
-        <a href="#" class = "card__image"><img src="/" class="card__img" alt="Место"/></a>
-        <img src="images\Trash.svg" class="card__trash"/>
+        <a href="#" class="card__image"
+          ><img src="/" class="card__img" alt="Место"
+        /></a>
+        <img src="images\Trash.svg" class="card__trash" />
         <div class="card__bottom">
           <h3 class="card__name"></h3>
           <button class="card__like" type="button"></button>
-         </div>
         </div>
-          </template>
+      </div>
+    </template>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

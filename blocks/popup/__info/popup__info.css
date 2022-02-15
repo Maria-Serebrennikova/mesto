@@ -1,6 +1,7 @@
 .popup__info{
 display: flex;
-margin: 0 auto 30px;
+padding: 0 0 12px;
+margin-bottom: 5px;
 font-family: Inter;
 font-style: normal;
 font-weight: normal;

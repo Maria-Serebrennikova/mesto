@@ -1,15 +1,22 @@
-import {
-  imageBigscreen,
-  nameBigscreen,
-  openPopup,
-  popupBigScreen,
-} from "./utils.js";
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._template = document.querySelector(cardSelector).content;
+    this._handleCardClick = handleCardClick;
+  }
+
+  getNewCard() {
+    this._newCard = this._template.cloneNode(true);
+    this._cardImage = this._newCard.querySelector(".card__img");
+
+    this._addListeners();
+
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._newCard.querySelector(".card__name").textContent = this._name;
+
+    return this._newCard;
   }
 
   _addListeners = () => {
@@ -24,24 +31,8 @@ export class Card {
       buttonTrash.parentElement.remove();
     });
 
-    const openPopupBigScreen = this._newCard.querySelector(".card__img");
-    openPopupBigScreen.addEventListener("click", () => {
-      imageBigscreen.src = this._link;
-      imageBigscreen.alt = this._link;
-      nameBigscreen.textContent = this._name;
-      openPopup(popupBigScreen);
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
     });
   };
-
-  getNewCard() {
-    this._newCard = this._template.cloneNode(true);
-
-    this._newCard.querySelector(".card__img").src = this._link;
-    this._newCard.querySelector(".card__img").alt = this._name;
-    this._newCard.querySelector(".card__name").textContent = this._name;
-
-    this._addListeners(this._newCard);
-
-    return this._newCard;
-  }
 }

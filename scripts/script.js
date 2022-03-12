@@ -3,10 +3,8 @@ import {
   popupBigScreen,
   openPopup,
   closePopup,
-  addPopupListeners,
-  removePopupListeners,
-  closeOutPopup,
-  closePopupEscape,
+  imageBigscreen,
+  nameBigscreen,
 } from "./utils.js";
 import { Card } from "./Card.js";
 
@@ -58,8 +56,8 @@ const jobInput = document.querySelector(".popup__info_type_status");
 const placeInput = document.querySelector(".popup__info_type_place");
 const linkInput = document.querySelector(".popup__info_type_link");
 
-const formElement = document.querySelector(".popup__form_type_rename-user");
-const formElementCard = document.querySelector(".popup__form_type_append-card");
+const formRenameUser = document.querySelector(".popup__form_type_rename-user");
+const formAppendCard = document.querySelector(".popup__form_type_append-card");
 const profileName = document.querySelector(".profile__name");
 const profileStatus = document.querySelector(".profile__status");
 
@@ -74,11 +72,21 @@ const validationConfig = {
   errorClass: "popup__error_visible",
 };
 
-const editProfileValidator = new FormValidator(validationConfig, formElement);
-const addCardValidator = new FormValidator(validationConfig, formElementCard);
+const editProfileValidator = new FormValidator(
+  validationConfig,
+  formRenameUser
+);
+const addCardValidator = new FormValidator(validationConfig, formAppendCard);
 
 editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
+
+function handleCardClick(name, link) {
+  imageBigscreen.src = link;
+  nameBigscreen.textContent = name;
+  imageBigscreen.alt = name;
+  openPopup(popupBigScreen);
+}
 
 function openRenamePopup() {
   nameInput.value = profileName.textContent;
@@ -102,7 +110,7 @@ closePopupAppendCardButton.addEventListener("click", function () {
 
 closePopupBigScreen.addEventListener("click", () => closePopup(popupBigScreen));
 
-function formSubmitHandler(e) {
+function handleProfileFormSubmit(e) {
   e.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -111,9 +119,9 @@ function formSubmitHandler(e) {
   closePopup(popupRenameUser);
 }
 
-formElement.addEventListener("submit", formSubmitHandler);
+formRenameUser.addEventListener("submit", handleProfileFormSubmit);
 
-function formSubmitHandlerCard(e) {
+function handleAddCardSubmit(e) {
   e.preventDefault();
 
   const place = placeInput.value;
@@ -122,22 +130,23 @@ function formSubmitHandlerCard(e) {
   addCard(place, link);
   e.target.reset();
 
-  const buttonElement = popupAppendCard.querySelector(".popup__button");
-  buttonElement.classList.add("popup__button_disabled");
-
   closePopup(popupAppendCard);
 }
 
-formElementCard.addEventListener("submit", formSubmitHandlerCard);
+formAppendCard.addEventListener("submit", handleAddCardSubmit);
 
 function render() {
   initialCards.reverse().forEach(renderCard);
 }
 
-function renderCard(data) {
-  const card = new Card(data, "#card-template");
-  const newCard = card.getNewCard();
+function createCard(item) {
+  const card = new Card(item, "#card-template", handleCardClick);
+  const cardElement = card.getNewCard();
+  return cardElement;
+}
 
+function renderCard(data) {
+  const newCard = createCard(data);
   cards.prepend(newCard);
 }
 

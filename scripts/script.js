@@ -129,9 +129,10 @@ function handleAddCardSubmit(e) {
 
   addCard(place, link);
   e.target.reset();
-
+  addCardValidator.resetValidation();
+  
   closePopup(popupAppendCard);
-}
+  }
 
 formAppendCard.addEventListener("submit", handleAddCardSubmit);
 

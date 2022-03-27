@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "**Проект - \"Место\"**  \r Проект - интерактивный сайт с возможностью редактировать профиль, с горными достопримечательностями России. \r *В проекте использовались следующие навыки программирования:*  \r 1. Сложная верстка.  \r 2. Флексбокс верстка, гриды.  \r 3. Позиционирование элементов.  \r 4. Организация файлов и общее соблюдение методологии БЭМ.  \r 5. Адаптивная верстка.  \r 6. JS - интерактив: открытие-закрытие попапа, редактирование форм, увеличение изображения карт, добавление карт - js, валидация форм.  \r 7. Классы, ООП.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maria-Serebrennikova/mesto.git"
+  },
+  "author": "Serebrennikova Maria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maria-Serebrennikova/mesto/issues"
+  },
+  "homepage": "https://github.com/Maria-Serebrennikova/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "autoprefixer": "^10.4.4",
+    "babel-loader": "^8.2.4",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "cssnano": "^5.1.5",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss-loader": "^6.2.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "core-js": "^3.21.1"
+  }
+}

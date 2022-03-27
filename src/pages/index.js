@@ -7,8 +7,8 @@ import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { validationConfig, formRenameUser, formAppendCard, 
   popupBigScreen, nameInput, jobInput, openPopupRenameUserButton, 
-  openPopupAppendCardButton, profileName, profileStatus, popupRenameUser, popupAppendCard,
- initialCards,cards } from "../utils/constants.js";
+  openPopupAppendCardButton, profileName, profileStatus, popupRenameUser, 
+  popupAppendCard, initialCards,cards } from "../utils/constants.js";
 
 
 const editProfileValidator = new FormValidator(

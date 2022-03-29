@@ -1,7 +1,6 @@
 .popup__container_type_bigscreen{
-    width: 75vw;
-    height: 75vh;
     margin: auto;
     border: none;
     background: none;
+    padding: 0;
 }

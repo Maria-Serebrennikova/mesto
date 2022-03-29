@@ -20,9 +20,8 @@ outline: none;
 @media screen and (max-width: 767px) {
     .popup__info{
         width: 238px;
-        padding-left: 12px;
         }
     .popup__info:last-child{
-        margin: 0 auto 45px;
+        margin: 0 auto 20px;
         }   
     }      

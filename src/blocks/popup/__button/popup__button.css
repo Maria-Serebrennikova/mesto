@@ -9,7 +9,7 @@ font-weight: normal;
 font-size: 18px;
 line-height: 1.22;
 display: flex;
-margin: 32px auto 37px;
+margin: 15px auto 0;
 cursor: pointer;
 transition: opacity 0.5s;
 justify-content: center;
@@ -26,5 +26,6 @@ opacity: 0.6;
         height: 46px;
         font-size: 14px;
         line-height: 1.21;
+        margin-bottom: 25px;
         }
         } 

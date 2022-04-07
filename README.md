@@ -8,6 +8,8 @@
 5. Адаптивная верстка.  
 6. JS - интерактив: открытие-закрытие попапа, редактирование форм, увеличение изображения карт, добавление карт - js, валидация форм.  
 7. Классы, ООП.  
+8. API, UX.   
+
 
 *Ссылка на GitHub Pages:*  
-https://maria-serebrennikova.github.io/mesto/  
+https://maria-serebrennikova.github.io/mesto/ 

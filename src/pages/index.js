@@ -22,7 +22,7 @@ import { api } from "../components/Api.js";
 let userID;
 
 api
-  .getProfile() //готово
+  .getProfile()
   .then((res) => {
     userInfo.setUserInfo(res);
     userInfo.setAvatar(res);
@@ -30,7 +30,7 @@ api
   });
 
 api
-  .getInitialCards(userID) // готово
+  .getInitialCards(userID)
   .then((cardsContainer) => {
     cardsContainer.forEach((data) => {
       const cardElement = createCard(data, userID);
@@ -38,20 +38,19 @@ api
     });
   });
 
-const profileEditValidator = new FormValidator( // готово
+const profileEditValidator = new FormValidator(
   validationConfig,
   formRenameUser
 );
 const cardAddValidator = new FormValidator(validationConfig, formAppendCard); // готово
 const avatarAddValidator = new FormValidator(validationConfig, formAvatar); // готово
 
-profileEditValidator.enableValidation(); // готово
-cardAddValidator.enableValidation(); // готово
-avatarAddValidator.enableValidation(); // готово
+profileEditValidator.enableValidation();
+cardAddValidator.enableValidation();
+avatarAddValidator.enableValidation();
 
 function createCard(item, userID) {
-  //готово
-  const card = new Card(item, userID, "#card-template", handleCardClick, {
+   const card = new Card(item, userID, "#card-template", handleCardClick, {
     handleDeleteClick: (id) => {
       popupWithFormConfirmDelete.open();
       popupWithFormConfirmDelete.changeSubmitHandler(() => {
@@ -77,7 +76,7 @@ function createCard(item, userID) {
   return newCard;
 }
 
-const cardList = new Section( //готово
+const cardList = new Section(
   {
     items: [],
     renderer: (item) => {
@@ -89,12 +88,10 @@ const cardList = new Section( //готово
 );
 
 function handleCardClick(name, link) {
-  //готово
   popupWithImage.open(name, link);
 }
 
 function handleSubmitRenameUser(info) {
-  //готово
   popupWithFormRenameUser.changeButtonText("Сохранение...");
   api
     .editProfile(info)
@@ -108,7 +105,6 @@ function handleSubmitRenameUser(info) {
 }
 
 function handleSubmitAppendCard(obj) {
-  //готово
   popupWithFormAppendCard.changeButtonText("Сохранение...");
   api
     .addCard(obj)
@@ -140,13 +136,13 @@ function handleSubmitAvatar(obj) {
   popupWithFormAvatar.close();
 }
 
-const popupWithImage = new PopupWithImage(".popup_type_bigscreen"); //готово
+const popupWithImage = new PopupWithImage(".popup_type_bigscreen");
 
 const userInfo = new UserInfo({
   profileName: ".profile__name",
   profileStatus: ".profile__status",
   profileAvatar: ".profile__avatar-img",
-}); //готово
+});
 
 const popupWithFormRenameUser = new PopupWithForm(
   ".popup_type_rename-user",
@@ -160,17 +156,16 @@ const popupWithFormAppendCard = new PopupWithForm(
 
 const popupWithFormConfirmDelete = new PopupWithForm(
   ".popup_type_delete-confirm"
-); //готово
+);
 
 const popupWithFormAvatar = new PopupWithForm(
   ".popup_type_avatar-change",
   handleSubmitAvatar
 );
 
-cardList.renderItems(); //готово
+cardList.renderItems();
 
 openPopupRenameUserButton.addEventListener("click", () => {
-  //готово
   const { name, about } = userInfo.getUserInfo();
   nameInput.value = name;
   jobInput.value = about;
@@ -180,19 +175,17 @@ openPopupRenameUserButton.addEventListener("click", () => {
 });
 
 openPopupAppendCardButton.addEventListener("click", () => {
-  //готово
-  cardAddValidator.resetValidation();
+    cardAddValidator.resetValidation();
   popupWithFormAppendCard.open();
 });
 
 avatar.addEventListener("click", () => {
-  //готово
   popupWithFormAvatar.open();
   avatarAddValidator.resetValidation();
 });
 
-popupWithFormAppendCard.setEventListeners(); //готово
-popupWithFormRenameUser.setEventListeners(); //готово
-popupWithImage.setEventListeners(); //готово
-popupWithFormConfirmDelete.setEventListeners(); //готово
-popupWithFormAvatar.setEventListeners(); //готово
+popupWithFormAppendCard.setEventListeners();
+popupWithFormRenameUser.setEventListeners();
+popupWithImage.setEventListeners();
+popupWithFormConfirmDelete.setEventListeners();
+popupWithFormAvatar.setEventListeners();

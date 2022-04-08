@@ -18,22 +18,17 @@ export class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  changeSubmitHandler(newSubmitHandler) {
-    this._handleSubmit = newSubmitHandler;
-  }
-
   changeButtonText(newText) {
-    const submitButton = this._form.querySelector(".popup__button");
-    submitButton.textContent = newText;
+    this._form.querySelector(".popup__button").textContent = newText;
   }
 
   setEventListeners() {
+    super.setEventListeners();
+
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleSubmit(this._getInputValues());
-      this.close();
     });
-    super.setEventListeners();
   }
 
   close() {

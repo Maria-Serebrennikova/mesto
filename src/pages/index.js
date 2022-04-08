@@ -5,6 +5,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { PopupWithConfirmDelete } from "../components/PopupWithConfirmDelete.js";
 import {
   validationConfig,
   formRenameUser,
@@ -21,54 +22,56 @@ import { api } from "../components/Api.js";
 
 let userID;
 
-api
-  .getProfile()
-  .then((res) => {
+Promise.all([api.getProfile(), api.getInitialCards(userID)])
+  .then(([res, cardsContainer]) => {
     userInfo.setUserInfo(res);
     userInfo.setAvatar(res);
     userID = res._id;
-  });
 
-api
-  .getInitialCards(userID)
-  .then((cardsContainer) => {
     cardsContainer.forEach((data) => {
       const cardElement = createCard(data, userID);
       cardList.addItem(cardElement);
     });
-  });
+  })
+  .catch((err) => console.log(err));
 
 const profileEditValidator = new FormValidator(
   validationConfig,
   formRenameUser
 );
-const cardAddValidator = new FormValidator(validationConfig, formAppendCard); // готово
-const avatarAddValidator = new FormValidator(validationConfig, formAvatar); // готово
+const cardAddValidator = new FormValidator(validationConfig, formAppendCard);
+const avatarAddValidator = new FormValidator(validationConfig, formAvatar);
 
 profileEditValidator.enableValidation();
 cardAddValidator.enableValidation();
 avatarAddValidator.enableValidation();
 
 function createCard(item, userID) {
-   const card = new Card(item, userID, "#card-template", handleCardClick, {
+  const card = new Card(item, userID, "#card-template", handleCardClick, {
     handleDeleteClick: (id) => {
       popupWithFormConfirmDelete.open();
       popupWithFormConfirmDelete.changeSubmitHandler(() => {
-        api.deleteCard(id).then((res) => {
-          card.deleteCard();
-          popupWithFormConfirmDelete.close();
-        });
+        api
+          .deleteCard(id)
+          .then((res) => {
+            card.deleteCard();
+            popupWithFormConfirmDelete.close();
+          })
+          .catch((err) => console.log(err));
       });
     },
     handleLikeClick: (id) => {
       if (card.isLiked()) {
         api.deleteLike(id).then((res) => {
-          card.setLikes(res.likes);
+          card.setLikes(res.likes).catch((err) => console.log(err));
         });
       } else {
-        api.addLike(id).then((res) => {
-          card.setLikes(res.likes);
-        });
+        api
+          .addLike(id)
+          .then((res) => {
+            card.setLikes(res.likes);
+          })
+          .catch((err) => console.log(err));
       }
     },
   });
@@ -97,11 +100,12 @@ function handleSubmitRenameUser(info) {
     .editProfile(info)
     .then((res) => {
       userInfo.setUserInfo(info);
+      popupWithFormRenameUser.close();
     })
+    .catch((err) => console.log(err))
     .finally(() => {
       popupWithFormRenameUser.changeButtonText("Сохранить");
     });
-  popupWithFormRenameUser.close();
 }
 
 function handleSubmitAppendCard(obj) {
@@ -112,15 +116,15 @@ function handleSubmitAppendCard(obj) {
       obj._id = res._id;
       const cardElement = createCard(obj, userID);
       cardList.addItem(cardElement);
+      popupWithFormAppendCard.close();
     })
+    .catch((err) => console.log(err))
     .finally(() => {
       popupWithFormAppendCard.changeButtonText("Создать");
     });
   obj.owner = {};
   obj.owner._id = userID;
   obj.likes = [];
-
-  popupWithFormAppendCard.close();
 }
 
 function handleSubmitAvatar(obj) {
@@ -129,11 +133,12 @@ function handleSubmitAvatar(obj) {
     .changeAvatar(obj)
     .then((res) => {
       userInfo.setAvatar(obj);
+      popupWithFormAvatar.close();
     })
+    .catch((err) => console.log(err))
     .finally(() => {
       popupWithFormAvatar.changeButtonText("Сохранить");
     });
-  popupWithFormAvatar.close();
 }
 
 const popupWithImage = new PopupWithImage(".popup_type_bigscreen");
@@ -154,7 +159,7 @@ const popupWithFormAppendCard = new PopupWithForm(
   handleSubmitAppendCard
 );
 
-const popupWithFormConfirmDelete = new PopupWithForm(
+const popupWithFormConfirmDelete = new PopupWithConfirmDelete(
   ".popup_type_delete-confirm"
 );
 
@@ -175,7 +180,7 @@ openPopupRenameUserButton.addEventListener("click", () => {
 });
 
 openPopupAppendCardButton.addEventListener("click", () => {
-    cardAddValidator.resetValidation();
+  cardAddValidator.resetValidation();
   popupWithFormAppendCard.open();
 });
 
